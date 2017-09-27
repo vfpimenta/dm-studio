@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/res/merged/debug/drawable-v21/notification_action_background.xml",
+        "source": "/home/vfpimenta/.android/build-cache/ac8a8bd2a2d5b3e6d2091d89675673ca0b80f70e/output/res/drawable-v21/notification_action_background.xml"
+    },
+    {
+        "merged": "/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",
+        "source": "/home/vfpimenta/.android/build-cache/ac8a8bd2a2d5b3e6d2091d89675673ca0b80f70e/output/res/drawable-v21/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/res/merged/debug/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/home/vfpimenta/.android/build-cache/ac8a8bd2a2d5b3e6d2091d89675673ca0b80f70e/output/res/drawable-v21/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/res/merged/debug/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/home/vfpimenta/.android/build-cache/ac8a8bd2a2d5b3e6d2091d89675673ca0b80f70e/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
+    }
+]

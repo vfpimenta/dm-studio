@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/vfpimenta/.android/build-cache/2991e82a6d703ed374c9a420907bbf0d83351d46/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c7c62fe3cc01d5ead444936d589f380361e6df43/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vfpimenta/.android/build-cache/97b0f1c1c03bf7d55791bdfd84c349dc9394217f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="952944218ecedea1554a513dec0c14d570642843">
+        <dex dex="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_1d64275ce3bf6048af37cfd79a473f5b92dc83f4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vfpimenta/.android/build-cache/94c2ddc181b48d652cade3fce27a24b09a99b3d6/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
+        <dex dex="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_05881ecc12c6fc6f2edb91543f155ae04a7cb354/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vfpimenta/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/26.0.0-alpha1/support-annotations-26.0.0-alpha1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="023ee503b631f69511e335a061ea008f8da60f40">
+        <dex dex="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-26.0.0-alpha1_4ddeb5bbd69a6f91587305c899c63ca6a6f1989e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vfpimenta/.android/build-cache/4c74b93c660ec95b711cbe920532e0b810b8ecd3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
+        <dex dex="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ca145a496086e0774985c8a5bde9aa6ee3a5386c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vfpimenta/.android/build-cache/7819b1b3ee7fbb7e46ccd6998ce1261f1d93bf44/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e13485eac1eceba9ebcb22e775995a4818e970a1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vfpimenta/.android/build-cache/ac8a8bd2a2d5b3e6d2091d89675673ca0b80f70e/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
+        <dex dex="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_fe78dd1b158feaa0537a00d85c55cb07becd80dd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_fb7ab5459f1cb371eb28aaa89542e2298e783887/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vfpimenta/.android/build-cache/9a91a66821176505352fff2f46f6668a511ef09b/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9935891f23923f39d002087085d9696568a9f657">
+        <dex dex="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_7eded3e6abb0479aa96237305531fce5a5596463/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vfpimenta/Android/Sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.2_6a2494614a26ac538cb2a59dbcb9758f29163f7e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vfpimenta/.android/build-cache/a77793d48fe1bccc2a8a0703e51363c43e2c8369/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7912610ed96381c25c36d986eba422731b9641b6">
+        <dex dex="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_93404e34ecf26a19e1294ae0d66c7d9b08af99f7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vfpimenta/.android/build-cache/d41a6ad9164472dd399a26da9429e47263fd2acc/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
+        <dex dex="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e0ce308b2cb2517a838737f432f7d56ef35addd5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vfpimenta/.android/build-cache/f546114c2fbc2d2179f6f621165f01dde73f2631/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
+        <dex dex="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_77b0a4b38fc7b09a02a089ac794f8363dc946568/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="21f2947d644027c171370acf47beaf66f66bbee9">
+        <dex dex="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_11ff2518610873b343cb50fac46e3548706b4140/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vfpimenta/.android/build-cache/bb34f8cc68386062e5ce1f4078ea71e7fb7eb726/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
+        <dex dex="/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_da6cedbf9ffccbafc42ff49b4e5dea4a1ee70fb5/classes.dex" />
+    </item>
+
+</items>

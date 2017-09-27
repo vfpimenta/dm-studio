@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/home/vfpimenta/.android/build-cache/ac8a8bd2a2d5b3e6d2091d89675673ca0b80f70e/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/home/vfpimenta/.android/build-cache/ac8a8bd2a2d5b3e6d2091d89675673ca0b80f70e/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    }
+]

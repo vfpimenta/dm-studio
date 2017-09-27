@@ -1,0 +1,7 @@
+#Wed Sep 27 18:36:37 BRT 2017
+base.0=/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_11ff2518610873b343cb50fac46e3548706b4140
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_fb7ab5459f1cb371eb28aaa89542e2298e783887/classes.dex
+base.1=/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_fb7ab5459f1cb371eb28aaa89542e2298e783887
+file.0=/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_11ff2518610873b343cb50fac46e3548706b4140/classes.dex

@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/res/merged/debug/mipmap-xxhdpi/ic_under_construction.png",
+        "source": "/home/vfpimenta/dev/git/dm-studio/app/src/main/res/mipmap-xxhdpi/ic_under_construction.png"
+    },
+    {
+        "merged": "/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/res/merged/debug/mipmap-xxhdpi/ic_launcher.png",
+        "source": "/home/vfpimenta/dev/git/dm-studio/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/vfpimenta/dev/git/dm-studio/app/build/intermediates/res/merged/debug/mipmap-xxhdpi/ic_launcher_round.png",
+        "source": "/home/vfpimenta/dev/git/dm-studio/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
+    }
+]
