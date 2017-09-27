@@ -1,4 +1,4 @@
-package vfpimenta.dungeonmasterstudio;
+package vfpimenta.dungeonmasterstudio.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,15 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class PageFragment extends Fragment {
+import vfpimenta.dungeonmasterstudio.R;
+
+public class EncounterCalculatorFragment extends Fragment {
+
     public static final String ARG_PAGE = "ARG_PAGE";
 
     private int mPage;
 
-    public static PageFragment newInstance(int page) {
+    public static EncounterCalculatorFragment newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
-        PageFragment fragment = new PageFragment();
+        EncounterCalculatorFragment fragment = new EncounterCalculatorFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -26,13 +29,12 @@ public class PageFragment extends Fragment {
         mPage = getArguments().getInt(ARG_PAGE);
     }
 
-    // Inflate the fragment layout we defined above for this fragment
-    // Set the associated text for the title
-    @Override
+	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_page, container, false);
+        View view = inflater.inflate(R.layout.fragment_encounter_calculator, container, false);
         TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
-        tvTitle.setText("Fragment #" + mPage);
+        tvTitle.setText("<content>");
         return view;
     }
+
 }
