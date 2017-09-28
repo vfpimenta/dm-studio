@@ -11,11 +11,11 @@ import java.util.Map;
 import vfpimenta.dungeonmasterstudio.fragments.EncounterCalculatorFragment;
 import vfpimenta.dungeonmasterstudio.fragments.UnderConstructionFragment;
 
-public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
+public class TabFragmentPagerAdapter extends android.support.v4.app.FragmentPagerAdapter {
     private String tabTitles[] = new String[] { "Encounter calculator", "Campaign notes", "General resources" };
     private Map<Integer, Fragment> pages;
 
-    public SampleFragmentPagerAdapter(FragmentManager fm) {
+    public TabFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
 
         pages = new HashMap<>();
