@@ -2,6 +2,7 @@
     <string name="app_name">Dungeon Master Studio</string>
     <string name="under_construction">This page is under construction.</string>
     <string name="calculate">Calculate</string>
+    <string name="results">Encounter results</string>
 
     <string-array name="player_level">
     	<item>Choose a level</item>
