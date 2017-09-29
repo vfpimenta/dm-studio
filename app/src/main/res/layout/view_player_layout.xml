@@ -25,6 +25,7 @@
         android:visibility="visible" />
 
     <ImageButton
+        android:id="@+id/remove_player"
         android:paddingTop="7.5dip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
