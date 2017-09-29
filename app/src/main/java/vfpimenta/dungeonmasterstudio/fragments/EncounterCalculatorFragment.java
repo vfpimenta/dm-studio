@@ -1,15 +1,12 @@
 package vfpimenta.dungeonmasterstudio.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
 
 import vfpimenta.dungeonmasterstudio.R;
 
@@ -36,6 +33,12 @@ public class EncounterCalculatorFragment extends Fragment {
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_encounter_calculator, container, false);
+        RelativeLayout playerContainer = view.findViewById(R.id.player_container);
+        View playerView = inflater.inflate(R.layout.view_player_layout, null);
+        playerContainer.addView(playerView);
+        RelativeLayout enemyContainer = view.findViewById(R.id.enemy_container);
+        View enemyView = inflater.inflate(R.layout.view_enemy_layout, null);
+        enemyContainer.addView(enemyView);
         return view;
     }
 
