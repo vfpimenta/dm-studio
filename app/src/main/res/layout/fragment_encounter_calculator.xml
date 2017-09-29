@@ -16,39 +16,73 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="2dip"
-                android:paddingBottom="2dip"
-                android:paddingLeft="5dip"
-                android:text="Party members"
-                style="?android:attr/listSeparatorTextViewStyle" />
+                android:orientation="horizontal"
+                android:weightSum="10">
 
-            <RelativeLayout
+                <TextView
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="2dip"
+                    android:paddingBottom="2dip"
+                    android:paddingLeft="5dip"
+                    android:text="Party members"
+                    android:layout_weight="9"
+                    style="?android:attr/listSeparatorTextViewStyle" />
+
+                <ImageButton
+                    android:id="@+id/add_player"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:src="@android:drawable/ic_input_add" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/player_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </RelativeLayout>
-
-            <TextView
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="2dip"
-                android:paddingBottom="2dip"
-                android:paddingLeft="5dip"
-                android:text="Enemy group"
-                style="?android:attr/listSeparatorTextViewStyle" />
+                android:orientation="vertical">
 
-            <RelativeLayout
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="2dip"
+                    android:paddingBottom="2dip"
+                    android:paddingLeft="5dip"
+                    android:text="Enemy group"
+                    android:layout_weight="9"
+                    style="?android:attr/listSeparatorTextViewStyle" />
+
+                <ImageButton
+                    android:id="@+id/add_enemy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:src="@android:drawable/ic_input_add" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/enemy_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            </RelativeLayout>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
