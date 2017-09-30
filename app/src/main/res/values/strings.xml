@@ -3,6 +3,12 @@
     <string name="under_construction">This page is under construction.</string>
     <string name="calculate">Calculate</string>
     <string name="results">Encounter results</string>
+    
+    <string name="incomplete_form_title">Continue calculation?</string>
+    <string name="incomplete_form_message">
+        You seem to have not selected the level/challenge of all characters.
+        Do you wish to continue anyway?
+    </string>
 
     <string-array name="player_level">
     	<item>Choose a level</item>

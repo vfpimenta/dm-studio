@@ -1,7 +1,9 @@
 package vfpimenta.dungeonmasterstudio.fragments;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,8 +84,15 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
 
         container.removeAllViews();
         container.invalidate();
+        int index = 0;
         for(View u : rows){
+            index++;
             container.addView(u);
+            if(option == Opt.Player) {
+                ((TextView) u.findViewById(R.id.player_label)).setText("Player #"+(index));
+            }else if(option == Opt.Enemy){
+                ((TextView) u.findViewById(R.id.enemy_label)).setText("Monster #"+(index));
+            }
         }
         container.invalidate();
     }
@@ -112,7 +121,7 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
         return enemyView;
     }
 
-    private int[] getPlayerlevels(){
+    private int[] getPlayerLevels(){
         int[] playerLevels = new int[playerRows.size()];
         for(int i = 0; i<playerRows.size(); i++){
             View playerRow = playerRows.get(i);
@@ -134,13 +143,49 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
         return enemyCrs;
     }
 
+    private int[] clearZeros(int[] array){
+        int j = 0;
+        for( int i=0;  i<array.length;  i++ )
+        {
+            if (array[i] != 0)
+                array[j++] = array[i];
+        }
+        int [] newArray = new int[j];
+        System.arraycopy( array, 0, newArray, 0, j );
+        return newArray;
+    }
+
+    private void launchCalculation(){
+        EncounterResult results = Calculator.calculate(clearZeros(getPlayerLevels()), clearZeros(getEnemyCrs()));
+        ResultsDialogFragment dialog = ResultsDialogFragment.newInstance(
+                getResources().getString(R.string.results),
+                results.getEasyThreshold(),
+                results.getMediumThreshold(),
+                results.getHardThreshold(),
+                results.getDeadlyThreshold(),
+                results.getRawExperience(),
+                results.getAdjustedExperience(),
+                results.getEncounterLevel());
+        dialog.show(getFragmentManager(), "dialog");
+    }
+
+    private boolean checkForm(){
+        for(int i : getPlayerLevels()){
+            if(i == 0) return false;
+        }
+
+        for(int i : getEnemyCrs()){
+            if(i == 0) return false;
+        }
+        return true;
+    }
+
     @Override
     public void onClick(View v){
         switch (v.getId()) {
             case  R.id.add_player: {
                 final LinearLayout playerContainer = mView.findViewById(R.id.player_container);
                 View playerView = buildPlayerView(playerContainer,LayoutInflater.from(mView.getContext()));
-                ((TextView) playerView.findViewById(R.id.player_label)).setText("Player #"+(playerRows.size()+1));
 
                 playerRows.add(playerView);
                 refreshPlayerContainer(playerContainer);
@@ -150,7 +195,6 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
             case R.id.add_enemy: {
                 LinearLayout enemyContainer = mView.findViewById(R.id.enemy_container);
                 View enemyView = buildEnemyView(enemyContainer,LayoutInflater.from(mView.getContext()));
-                ((TextView) enemyView.findViewById(R.id.enemy_label)).setText("Monster #"+(enemyRows.size()+1));
 
                 enemyRows.add(enemyView);
                 refreshEnemyContainer(enemyContainer);
@@ -158,17 +202,25 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
             }
 
             case R.id.calculate: {
-                EncounterResult results = Calculator.calculate(getPlayerlevels(), getEnemyCrs());
-                ResultsDialogFragment dialog = ResultsDialogFragment.newInstance(
-                        getResources().getString(R.string.results),
-                        results.getEasyThreshold(),
-                        results.getMediumThreshold(),
-                        results.getHardThreshold(),
-                        results.getDeadlyThreshold(),
-                        results.getRawExperience(),
-                        results.getAdjustedExperience(),
-                        results.getEncounterLevel());
-                dialog.show(getFragmentManager(), "dialog");
+                if (!checkForm()){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle(R.string.incomplete_form_title)
+                            .setMessage(R.string.incomplete_form_message)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
+                                public void onClick(DialogInterface dialog, int wich){
+                                    launchCalculation();
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener(){
+                                public void onClick(DialogInterface dialog, int wich){
+                                    // do nothing
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }else{
+                    launchCalculation();
+                }
             }
         }
     }
