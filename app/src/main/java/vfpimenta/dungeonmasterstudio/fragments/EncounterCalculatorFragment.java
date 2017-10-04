@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -33,16 +34,14 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
     private int mPage;
     private View mView;
 
-    private static List<View> playerRows;
-    private static List<View> enemyRows;
+    private List<View> playerRows = new ArrayList<>();
+    private List<View> enemyRows = new ArrayList<>();
 
     public static EncounterCalculatorFragment newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
         EncounterCalculatorFragment fragment = new EncounterCalculatorFragment();
         fragment.setArguments(args);
-        playerRows = new ArrayList<>();
-        enemyRows = new ArrayList<>();
         return fragment;
     }
 
@@ -63,8 +62,40 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
         Button calculate = view.findViewById(R.id.calculate);
         calculate.setOnClickListener(this);
 
+        if(savedInstanceState != null){
+            LinearLayout playerContainer = view.findViewById(R.id.player_container);
+            LinearLayout enemyContainer = view.findViewById(R.id.enemy_container);
+            for(int i : savedInstanceState.getIntArray("player-data")){
+                View playerView = buildPlayerView(playerContainer,LayoutInflater.from(view.getContext()));
+                ((Spinner) playerView.findViewById(R.id.spinner_level)).setSelection(i);
+
+                playerRows.add(playerView);
+            }
+
+            for(int i : savedInstanceState.getIntArray("enemy-data")){
+                View enemyView = buildEnemyView(enemyContainer,LayoutInflater.from(view.getContext()));
+                ((Spinner) enemyView.findViewById(R.id.spinner_cr)).setSelection(i);
+
+                enemyRows.add(enemyView);
+            }
+            refreshPlayerContainer(playerContainer);
+            refreshEnemyContainer(enemyContainer);
+        }
+
         setView(view);
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putIntArray("player-data", getPlayerLevels());
+        outState.putIntArray("enemy-data", getEnemyCrs());
+
+        // TODO: Find out why the containers must be forcefully cleaned here
+        ((LinearLayout)mView.findViewById(R.id.player_container)).removeAllViews();
+        ((LinearLayout)mView.findViewById(R.id.enemy_container)).removeAllViews();
     }
 
     private void setView(View v){
@@ -83,7 +114,6 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
         List<View> rows = option == Opt.Player ? playerRows : enemyRows;
 
         container.removeAllViews();
-        container.invalidate();
         int index = 0;
         for(View u : rows){
             index++;
@@ -94,7 +124,6 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
                 ((TextView) u.findViewById(R.id.enemy_label)).setText("Monster #"+(index));
             }
         }
-        container.invalidate();
     }
 
     private View buildPlayerView(final LinearLayout playerContainer, LayoutInflater inflater){
