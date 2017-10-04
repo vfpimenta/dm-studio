@@ -62,9 +62,10 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
         Button calculate = view.findViewById(R.id.calculate);
         calculate.setOnClickListener(this);
 
+        LinearLayout playerContainer = view.findViewById(R.id.player_container);
+        LinearLayout enemyContainer = view.findViewById(R.id.enemy_container);
+
         if(savedInstanceState != null){
-            LinearLayout playerContainer = view.findViewById(R.id.player_container);
-            LinearLayout enemyContainer = view.findViewById(R.id.enemy_container);
             for(int i : savedInstanceState.getIntArray("player-data")){
                 View playerView = buildPlayerView(playerContainer,LayoutInflater.from(view.getContext()));
                 ((Spinner) playerView.findViewById(R.id.spinner_level)).setSelection(i);
@@ -78,9 +79,10 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
 
                 enemyRows.add(enemyView);
             }
-            refreshPlayerContainer(playerContainer);
-            refreshEnemyContainer(enemyContainer);
         }
+
+        refreshPlayerContainer(playerContainer);
+        refreshEnemyContainer(enemyContainer);
 
         setView(view);
         return view;
@@ -96,6 +98,16 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
         // TODO: Find out why the containers must be forcefully cleaned here
         ((LinearLayout)mView.findViewById(R.id.player_container)).removeAllViews();
         ((LinearLayout)mView.findViewById(R.id.enemy_container)).removeAllViews();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if(!isVisibleToUser && mView != null){
+            ((LinearLayout)mView.findViewById(R.id.player_container)).removeAllViews();
+            ((LinearLayout)mView.findViewById(R.id.enemy_container)).removeAllViews();
+        }
     }
 
     private void setView(View v){
@@ -117,6 +129,9 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
         int index = 0;
         for(View u : rows){
             index++;
+            if(u.getParent() != null){
+                ((LinearLayout)u.getParent()).removeView(u);
+            }
             container.addView(u);
             if(option == Opt.Player) {
                 ((TextView) u.findViewById(R.id.player_label)).setText("Player #"+(index));
