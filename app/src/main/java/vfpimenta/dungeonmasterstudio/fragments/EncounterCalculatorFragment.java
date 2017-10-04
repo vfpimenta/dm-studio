@@ -2,6 +2,7 @@ package vfpimenta.dungeonmasterstudio.fragments;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -32,7 +33,6 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
     public static final String ARG_PAGE = "ARG_PAGE";
 
     private int mPage;
-    private View mView;
 
     private List<View> playerRows = new ArrayList<>();
     private List<View> enemyRows = new ArrayList<>();
@@ -62,10 +62,10 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
         Button calculate = view.findViewById(R.id.calculate);
         calculate.setOnClickListener(this);
 
-        LinearLayout playerContainer = view.findViewById(R.id.player_container);
-        LinearLayout enemyContainer = view.findViewById(R.id.enemy_container);
-
         if(savedInstanceState != null){
+            LinearLayout playerContainer = view.findViewById(R.id.player_container);
+            LinearLayout enemyContainer = view.findViewById(R.id.enemy_container);
+
             for(int i : savedInstanceState.getIntArray("player-data")){
                 View playerView = buildPlayerView(playerContainer,LayoutInflater.from(view.getContext()));
                 ((Spinner) playerView.findViewById(R.id.spinner_level)).setSelection(i);
@@ -81,11 +81,15 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
             }
         }
 
-        refreshPlayerContainer(playerContainer);
-        refreshEnemyContainer(enemyContainer);
-
-        setView(view);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        refreshPlayerContainer((LinearLayout) getView().findViewById(R.id.player_container));
+        refreshEnemyContainer((LinearLayout) getView().findViewById(R.id.enemy_container));
     }
 
     @Override
@@ -94,24 +98,6 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
 
         outState.putIntArray("player-data", getPlayerLevels());
         outState.putIntArray("enemy-data", getEnemyCrs());
-
-        // TODO: Find out why the containers must be forcefully cleaned here
-        ((LinearLayout)mView.findViewById(R.id.player_container)).removeAllViews();
-        ((LinearLayout)mView.findViewById(R.id.enemy_container)).removeAllViews();
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-
-        if(!isVisibleToUser && mView != null){
-            ((LinearLayout)mView.findViewById(R.id.player_container)).removeAllViews();
-            ((LinearLayout)mView.findViewById(R.id.enemy_container)).removeAllViews();
-        }
-    }
-
-    private void setView(View v){
-        this.mView = v;
     }
 
     private void refreshPlayerContainer(LinearLayout playerContainer){
@@ -228,8 +214,8 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
     public void onClick(View v){
         switch (v.getId()) {
             case  R.id.add_player: {
-                final LinearLayout playerContainer = mView.findViewById(R.id.player_container);
-                View playerView = buildPlayerView(playerContainer,LayoutInflater.from(mView.getContext()));
+                final LinearLayout playerContainer = getView().findViewById(R.id.player_container);
+                View playerView = buildPlayerView(playerContainer,LayoutInflater.from(getView().getContext()));
 
                 playerRows.add(playerView);
                 refreshPlayerContainer(playerContainer);
@@ -237,8 +223,8 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
             }
 
             case R.id.add_enemy: {
-                LinearLayout enemyContainer = mView.findViewById(R.id.enemy_container);
-                View enemyView = buildEnemyView(enemyContainer,LayoutInflater.from(mView.getContext()));
+                LinearLayout enemyContainer = getView().findViewById(R.id.enemy_container);
+                View enemyView = buildEnemyView(enemyContainer,LayoutInflater.from(getView().getContext()));
 
                 enemyRows.add(enemyView);
                 refreshEnemyContainer(enemyContainer);
