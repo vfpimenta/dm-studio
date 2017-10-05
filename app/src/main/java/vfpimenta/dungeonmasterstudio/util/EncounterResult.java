@@ -1,6 +1,7 @@
 package vfpimenta.dungeonmasterstudio.util;
 
 public class EncounterResult {
+
 	private int easyThreshold;
 	private int mediumThreshold;
 	private int hardThreshold;
@@ -9,7 +10,7 @@ public class EncounterResult {
 	private int rawExperience;
 	private double adjustedExperience;
 
-	private String encounterLevel;
+	private Calculator.Level encounterLevel;
 
     public EncounterResult() {
 
@@ -22,7 +23,7 @@ public class EncounterResult {
 		this.deadlyThreshold = deadlyThreshold;
 		this.rawExperience = rawExperience;
 		this.adjustedExperience = adjustedExperience;
-		this.encounterLevel = encounterLevel;
+		this.encounterLevel = Calculator.Level.valueOf(encounterLevel);
 	}
 
 	public int getEasyThreshold() {
@@ -74,10 +75,25 @@ public class EncounterResult {
 	}
 
 	public String getEncounterLevel() {
-		return encounterLevel;
+		return "<font color=\""+getColor()+"\">"+encounterLevel+"</font>";
 	}
 
 	public void setEncounterLevel(String encounterLevel) {
-		this.encounterLevel = encounterLevel;
+		this.encounterLevel = Calculator.Level.valueOf(encounterLevel);
+	}
+
+	private String getColor() {
+		switch(this.encounterLevel){
+			case Easy:
+			    return "green";
+            case Medium:
+                return "yellow";
+            case Hard:
+                return "orange";
+            case Deadly:
+                return "red";
+            default:
+                return "black";
+		}
 	}
 }

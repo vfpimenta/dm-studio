@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Dungeon Master Studio</string>
+    <string name="app_short_name">DM Studio</string>
     <string name="under_construction">This page is under construction.</string>
-    <string name="calculate">Calculate</string>
+    <string name="calculate">Calculate challenge</string>
     <string name="results">Encounter results</string>
     
     <string name="incomplete_form_title">Continue calculation?</string>
@@ -11,7 +12,7 @@
     </string>
 
     <string-array name="player_level">
-    	<item>Choose a level</item>
+    	<item>Select level</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -35,7 +36,7 @@
     </string-array>
 
     <string-array name="enemy_cr">
-    	<item>Choose a challenge</item>
+    	<item>Select challenge</item>
         <item>0</item>
         <item>1/8</item>
         <item>1/4</item>

@@ -6,6 +6,10 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class Calculator {
+	public enum Level{
+		Easy, Medium, Hard, Deadly
+	}
+
 	// Defining base values
 	private static final int[] XP_Threshold_easy = new int[] {25, 50, 75, 125, 250, 300, 35, 450, 500, 600, 800, 100, 1100, 1250, 1400, 1600, 2000, 2100, 2400, 2800};
 	private static final int[] XP_Threshold_medium = new int[] {50, 100, 150, 250, 500, 600, 750, 900, 1100, 1200, 1600, 2000, 2200, 2500, 2800, 3200, 3900, 4200, 4900, 5700};
@@ -71,13 +75,13 @@ public class Calculator {
 
         String level;
 		if(val == distances[0])
-			level = "Easy" ;
+			level = Level.Easy.name() ;
 		else if(val == distances[1])
-			level = "Medium" ;
+			level = Level.Medium.name() ;
 		else if(val == distances[2])
-			level = "Hard" ;
+			level = Level.Hard.name() ;
 		else
-			level = "Deadly" ;
+			level = Level.Deadly.name() ;
 		// --------------------------------------------------------------------
 
 		// Filling inputs
