@@ -87,6 +87,7 @@
     </ScrollView>
 
     <RelativeLayout
+        android:paddingBottom="5dip"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -103,6 +104,8 @@
             android:textColor="@color/primaryText"
             android:paddingLeft="20dip"
             android:paddingRight="20dip"
+            android:paddingBottom="5dip"
+            android:paddingTop="5dip"
             android:layout_centerInParent="true"/>
     </RelativeLayout>
 
