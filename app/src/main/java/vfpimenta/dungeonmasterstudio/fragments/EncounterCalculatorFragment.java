@@ -101,10 +101,16 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
     }
 
     private void refreshPlayerContainer(LinearLayout playerContainer){
+        if(getView() != null){
+            playerContainer = getView().findViewById(R.id.player_container);
+        }
         refreshContainer(playerContainer, Opt.Player);
     }
 
     private void refreshEnemyContainer(LinearLayout enemyContainer){
+        if(getView() != null) {
+            enemyContainer = getView().findViewById(R.id.enemy_container);
+        }
         refreshContainer(enemyContainer, Opt.Enemy);
     }
 

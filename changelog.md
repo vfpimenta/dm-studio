@@ -9,3 +9,6 @@
 
 ## v1.0.3
 * Fixed the conflicting bahaviour for when changing orientation or switching tabs introduced on the last version.
+
+## v1.0.4
+* Fixed a bug where deletion of characters after switching pages would bahave strangely.
