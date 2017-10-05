@@ -75,7 +75,7 @@ public class EncounterResult {
 	}
 
 	public String getEncounterLevel() {
-		return "<font color=\""+getColor()+"\">"+encounterLevel+"</font>";
+		return "<font color=\""+getColor()+"\"><b>"+encounterLevel+"</b></font>";
 	}
 
 	public void setEncounterLevel(String encounterLevel) {
@@ -85,15 +85,15 @@ public class EncounterResult {
 	private String getColor() {
 		switch(this.encounterLevel){
 			case Easy:
-			    return "green";
+			    return "#006d17";
             case Medium:
-                return "yellow";
+                return "#7c6c00";
             case Hard:
-                return "orange";
+                return "#a34c00";
             case Deadly:
-                return "red";
+                return "#d80000";
             default:
-                return "black";
+                return "#000000";
 		}
 	}
 }
