@@ -72,7 +72,7 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
         ImageButton addNote = view.findViewById(R.id.add_note);
         addNote.setOnClickListener(this);
 
-        fillCharacterContainer(view);
+        fillEntityContainer(view);
 
         return view;
     }
@@ -92,7 +92,7 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
         IOHandler.storeNoteData(getContext(), noteData);
     }
 
-    private void fillCharacterContainer(View view){
+    private void fillEntityContainer(View view){
         String characterData = IOHandler.loadCharacterData(getContext());
         String locationData = IOHandler.loadLocationData(getContext());
         String itemData = IOHandler.loadItemData(getContext());
@@ -154,9 +154,23 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
         });
         characterView.findViewById(R.id.remove_entity).setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
-                characters.remove(character);
-                characterContainer.removeView((View) v.getParent());
+            public void onClick(final View v){
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.confirm_deletion_title)
+                        .setMessage(R.string.confirm_deletion_message)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int wich){
+                                characters.remove(character);
+                                characterContainer.removeView((View) v.getParent());
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int wich){
+                                // do nothing
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
         });
         ((TextView) characterView.findViewById(R.id.entity_label)).setText(character.getName());
@@ -179,9 +193,23 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
         });
         locationView.findViewById(R.id.remove_entity).setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
-                locations.remove(location);
-                locationContainer.removeView((View) v.getParent());
+            public void onClick(final View v){
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.confirm_deletion_title)
+                        .setMessage(R.string.confirm_deletion_message)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int wich){
+                                locations.remove(location);
+                                locationContainer.removeView((View) v.getParent());
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int wich){
+                                // do nothing
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
         });
         ((TextView) locationView.findViewById(R.id.entity_label)).setText(location.getName());
@@ -204,9 +232,23 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
         });
         itemView.findViewById(R.id.remove_entity).setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
-                items.remove(item);
-                itemContainer.removeView((View) v.getParent());
+            public void onClick(final View v){
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.confirm_deletion_title)
+                        .setMessage(R.string.confirm_deletion_message)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int wich){
+                                items.remove(item);
+                                itemContainer.removeView((View) v.getParent());
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int wich){
+                                // do nothing
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
         });
         ((TextView) itemView.findViewById(R.id.entity_label)).setText(item.getName());
@@ -229,9 +271,23 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
         });
         noteView.findViewById(R.id.remove_entity).setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
-                notes.remove(note);
-                noteContainer.removeView((View) v.getParent());
+            public void onClick(final View v){
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.confirm_deletion_title)
+                        .setMessage(R.string.confirm_deletion_message)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int wich){
+                                notes.remove(note);
+                                noteContainer.removeView((View) v.getParent());
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int wich){
+                                // do nothing
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
         });
         ((TextView) noteView.findViewById(R.id.entity_label)).setText(note.getName());

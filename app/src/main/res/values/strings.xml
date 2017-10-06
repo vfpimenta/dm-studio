@@ -89,4 +89,9 @@
     <string name="item_info">Item info</string>
     <string name="note_info">Note info</string>
 
+    <string name="confirm_deletion_title">Confirm delete</string>
+    <string name="confirm_deletion_message">
+        This entity will be permanently deleted. Do you wish to continue?
+    </string>
+
 </resources>
