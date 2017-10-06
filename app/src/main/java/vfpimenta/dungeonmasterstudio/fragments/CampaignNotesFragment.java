@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,11 +94,35 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
 
         final LinearLayout characterContainer = view.findViewById(R.id.character_container);
         for(CharacterEntity character : characters){
-            View characterView = getActivity().getLayoutInflater().inflate(R.layout.view_player_layout, null);
-            ((TextView) characterView.findViewById(R.id.player_label)).setText(character.getName());
-
-            characterContainer.addView(characterView);
+            buildCharacterView(characterContainer, character);
         }
+    }
+
+    private void buildCharacterView(final LinearLayout characterContainer, final CharacterEntity character){
+        View characterView = getActivity().getLayoutInflater().inflate(R.layout.view_character_layout, null);
+        final String reference = character.getReference() != null ? character.getReference().toString() : "<null>";
+        characterView.findViewById(R.id.character_info).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.character_info);
+                builder.setMessage(Html.fromHtml(
+                        "Name: "+character.getName()+"<br/>"+
+                                "Description: "+character.getDescription()+"<br/>"+
+                                "Reference: "+reference+"<br/>"
+                ))
+                .show();
+            }
+        });
+        characterView.findViewById(R.id.remove_character).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                characters.remove(character);
+                characterContainer.removeView((View) v.getParent());
+            }
+        });
+        ((TextView) characterView.findViewById(R.id.character_label)).setText(character.getName());
+        characterContainer.addView(characterView);
     }
 
     @Override
@@ -114,12 +139,9 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                                 String name = ((EditText) view.findViewById(R.id.character_name)).getText().toString();
                                 String description = ((EditText) view.findViewById(R.id.character_description)).getText().toString();
                                 CharacterEntity character = new CharacterEntity(name, description, null);
-                                characters.add(character);
-
                                 final LinearLayout characterContainer = getView().findViewById(R.id.character_container);
-                                View characterView = getActivity().getLayoutInflater().inflate(R.layout.view_player_layout, null);
-                                ((TextView) characterView.findViewById(R.id.player_label)).setText(character.getName());
-                                characterContainer.addView(characterView);
+                                buildCharacterView(characterContainer, character);
+                                characters.add(character);
                             }
                         })
                         .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener(){

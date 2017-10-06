@@ -84,4 +84,9 @@
     <string name="item_form_title">Create new item</string>
     <string name="note_form_title">Create riddle or note</string>
 
+    <string name="character_info">Character info</string>
+    <string name="location_info">Location info</string>
+    <string name="item_info">Item info</string>
+    <string name="note_info">Note info</string>
+
 </resources>
