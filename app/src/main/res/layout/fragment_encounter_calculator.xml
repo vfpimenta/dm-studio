@@ -31,7 +31,7 @@
                     android:paddingBottom="2dip"
                     android:paddingLeft="5dip"
                     android:paddingTop="2dip"
-                    android:text="Party members" />
+                    android:text="@string/party_members" />
 
                 <ImageButton
                     android:id="@+id/add_player"
@@ -64,7 +64,7 @@
                     android:paddingBottom="2dip"
                     android:paddingLeft="5dip"
                     android:paddingTop="2dip"
-                    android:text="Enemy group" />
+                    android:text="@string/enemy_group" />
 
                 <ImageButton
                     android:id="@+id/add_enemy"

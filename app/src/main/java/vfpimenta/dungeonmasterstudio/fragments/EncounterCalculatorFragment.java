@@ -126,9 +126,9 @@ public class EncounterCalculatorFragment extends Fragment implements View.OnClic
             }
             container.addView(u);
             if(option == Opt.Player) {
-                ((TextView) u.findViewById(R.id.player_label)).setText("Player #"+(index));
+                ((TextView) u.findViewById(R.id.player_label)).setText(getResources().getString(R.string.player_label)+index);
             }else if(option == Opt.Enemy){
-                ((TextView) u.findViewById(R.id.enemy_label)).setText("Monster #"+(index));
+                ((TextView) u.findViewById(R.id.enemy_label)).setText(getResources().getString(R.string.monster_label)+index);
             }
         }
     }

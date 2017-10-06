@@ -1,4 +1,4 @@
-package vfpimenta.dungeonmasterstudio;
+package vfpimenta.dungeonmasterstudio.fragments;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -20,7 +20,7 @@ public class TabFragmentPagerAdapter extends android.support.v4.app.FragmentPage
 
         pages = new HashMap<>();
         pages.put(1, EncounterCalculatorFragment.newInstance(1));
-        pages.put(2, UnderConstructionFragment.newInstance(2));
+        pages.put(2, CampaignNotesFragment.newInstance(2));
         pages.put(3, UnderConstructionFragment.newInstance(3));
     }
 

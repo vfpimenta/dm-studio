@@ -1,10 +1,13 @@
-package vfpimenta.dungeonmasterstudio;
+package vfpimenta.dungeonmasterstudio.main;
 
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.astuetz.PagerSlidingTabStrip;
+
+import vfpimenta.dungeonmasterstudio.R;
+import vfpimenta.dungeonmasterstudio.fragments.TabFragmentPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 

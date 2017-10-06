@@ -1,9 +1,14 @@
 <resources>
+    <!-- Encounter calculator tab -->
     <string name="app_name">Dungeon Master Studio</string>
     <string name="app_short_name">DM Studio</string>
     <string name="under_construction">This page is under construction.</string>
     <string name="calculate">Calculate challenge</string>
     <string name="results">Encounter results</string>
+    <string name="party_members">Party members</string>
+    <string name="enemy_group">Enemy group</string>
+    <string name="player_label">Player #</string>
+    <string name="monster_label">Monster #</string>
     
     <string name="incomplete_form_title">Continue calculation?</string>
     <string name="incomplete_form_message">
@@ -67,5 +72,16 @@
         <item>24</item>
         <item>30</item>
     </string-array>
+
+    <!-- Campaign notes tab -->
+    <string name="character_header">Characters</string>
+    <string name="location_header">Locations</string>
+    <string name="item_header">Items</string>
+    <string name="note_header">Riddles and notes</string>
+
+    <string name="character_form_title">Create new character</string>
+    <string name="location_form_title">Create new location</string>
+    <string name="item_form_title">Create new item</string>
+    <string name="note_form_title">Create riddle or note</string>
 
 </resources>
