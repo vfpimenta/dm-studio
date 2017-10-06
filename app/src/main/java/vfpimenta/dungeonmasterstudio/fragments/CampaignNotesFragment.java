@@ -82,47 +82,160 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
         super.onStop();
 
         String characterData = gson.toJson(characters);
+        String locationData = gson.toJson(locations);
+        String itemData = gson.toJson(items);
+        String noteData = gson.toJson(notes);
+
         IOHandler.storeCharacterData(getContext(), characterData);
+        IOHandler.storeLocationData(getContext(), locationData);
+        IOHandler.storeItemData(getContext(), itemData);
+        IOHandler.storeNoteData(getContext(), noteData);
     }
 
     private void fillCharacterContainer(View view){
         String characterData = IOHandler.loadCharacterData(getContext());
+        String locationData = IOHandler.loadLocationData(getContext());
+        String itemData = IOHandler.loadItemData(getContext());
+        String noteData = IOHandler.loadNoteData(getContext());
+
         List<CharacterEntity> savedCharacters = gson.fromJson(characterData, new TypeToken<List<CharacterEntity>>(){}.getType());
+        List<LocationEntity> savedLocations = gson.fromJson(locationData, new TypeToken<List<LocationEntity>>(){}.getType());
+        List<ItemEntity> savedItems = gson.fromJson(itemData, new TypeToken<List<ItemEntity>>(){}.getType());
+        List<NoteEntity> savedNotes = gson.fromJson(noteData, new TypeToken<List<NoteEntity>>(){}.getType());
+
         if(savedCharacters != null){
             characters = savedCharacters;
         }
+        if(savedLocations != null){
+            locations = savedLocations;
+        }
+        if(savedItems != null){
+            items = savedItems;
+        }
+        if(savedNotes != null){
+            notes = savedNotes;
+        }
 
         final LinearLayout characterContainer = view.findViewById(R.id.character_container);
+        final LinearLayout locationContainer = view.findViewById(R.id.location_container);
+        final LinearLayout itemContainer = view.findViewById(R.id.item_container);
+        final LinearLayout noteContainer = view.findViewById(R.id.note_container);
+
         for(CharacterEntity character : characters){
             buildCharacterView(characterContainer, character);
+        }
+
+        for(LocationEntity location : locations){
+            buildLocationView(locationContainer, location);
+        }
+
+        for(ItemEntity item : items){
+            buildItemView(itemContainer, item);
+        }
+
+        for(NoteEntity note : notes){
+            buildNoteView(noteContainer, note);
         }
     }
 
     private void buildCharacterView(final LinearLayout characterContainer, final CharacterEntity character){
-        View characterView = getActivity().getLayoutInflater().inflate(R.layout.view_character_layout, null);
-        final String reference = character.getReference() != null ? character.getReference().toString() : "<null>";
-        characterView.findViewById(R.id.character_info).setOnClickListener(new View.OnClickListener(){
+        View characterView = getActivity().getLayoutInflater().inflate(R.layout.view_entity_layout, null);
+        characterView.findViewById(R.id.entity_info).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
                 builder.setTitle(R.string.character_info);
                 builder.setMessage(Html.fromHtml(
                         "Name: "+character.getName()+"<br/>"+
-                                "Description: "+character.getDescription()+"<br/>"+
-                                "Reference: "+reference+"<br/>"
+                                "Description: "+character.getDescription()+"<br/>"
                 ))
                 .show();
             }
         });
-        characterView.findViewById(R.id.remove_character).setOnClickListener(new View.OnClickListener(){
+        characterView.findViewById(R.id.remove_entity).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 characters.remove(character);
                 characterContainer.removeView((View) v.getParent());
             }
         });
-        ((TextView) characterView.findViewById(R.id.character_label)).setText(character.getName());
+        ((TextView) characterView.findViewById(R.id.entity_label)).setText(character.getName());
         characterContainer.addView(characterView);
+    }
+
+    private void buildLocationView(final LinearLayout locationContainer, final LocationEntity location){
+        View locationView = getActivity().getLayoutInflater().inflate(R.layout.view_entity_layout, null);
+        locationView.findViewById(R.id.entity_info).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.location_info);
+                builder.setMessage(Html.fromHtml(
+                        "Name: "+location.getName()+"<br/>"+
+                                "Description: "+location.getDescription()+"<br/>"
+                ))
+                        .show();
+            }
+        });
+        locationView.findViewById(R.id.remove_entity).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                locations.remove(location);
+                locationContainer.removeView((View) v.getParent());
+            }
+        });
+        ((TextView) locationView.findViewById(R.id.entity_label)).setText(location.getName());
+        locationContainer.addView(locationView);
+    }
+
+    private void buildItemView(final LinearLayout itemContainer, final ItemEntity item){
+        View itemView = getActivity().getLayoutInflater().inflate(R.layout.view_entity_layout, null);
+        itemView.findViewById(R.id.entity_info).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.item_info);
+                builder.setMessage(Html.fromHtml(
+                        "Name: "+item.getName()+"<br/>"+
+                                "Description: "+item.getDescription()+"<br/>"
+                ))
+                        .show();
+            }
+        });
+        itemView.findViewById(R.id.remove_entity).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                items.remove(item);
+                itemContainer.removeView((View) v.getParent());
+            }
+        });
+        ((TextView) itemView.findViewById(R.id.entity_label)).setText(item.getName());
+        itemContainer.addView(itemView);
+    }
+
+    private void buildNoteView(final LinearLayout noteContainer, final NoteEntity note){
+        View noteView = getActivity().getLayoutInflater().inflate(R.layout.view_entity_layout, null);
+        noteView.findViewById(R.id.entity_info).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.note_info);
+                builder.setMessage(Html.fromHtml(
+                        "Name: "+note.getName()+"<br/>"+
+                                "Description: "+note.getDescription()+"<br/>"
+                ))
+                        .show();
+            }
+        });
+        noteView.findViewById(R.id.remove_entity).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                notes.remove(note);
+                noteContainer.removeView((View) v.getParent());
+            }
+        });
+        ((TextView) noteView.findViewById(R.id.entity_label)).setText(note.getName());
+        noteContainer.addView(noteView);
     }
 
     @Override
@@ -153,12 +266,75 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                 break;
             }
             case R.id.add_location: {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                final LayoutInflater inflater = getActivity().getLayoutInflater();
+                final View view = inflater.inflate(R.layout.dialog_location_form, null);
+                builder.setTitle(R.string.location_form_title)
+                        .setView(view)
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int wich){
+                                String name = ((EditText) view.findViewById(R.id.location_name)).getText().toString();
+                                String description = ((EditText) view.findViewById(R.id.location_description)).getText().toString();
+                                LocationEntity location = new LocationEntity(name, description, null, null);
+                                final LinearLayout locationContainer = getView().findViewById(R.id.location_container);
+                                buildLocationView(locationContainer, location);
+                                locations.add(location);
+                            }
+                        })
+                        .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int wich){
+                                // do nothing
+                            }
+                        })
+                        .show();
                 break;
             }
             case R.id.add_item: {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                final LayoutInflater inflater = getActivity().getLayoutInflater();
+                final View view = inflater.inflate(R.layout.dialog_item_form, null);
+                builder.setTitle(R.string.item_form_title)
+                        .setView(view)
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int wich){
+                                String name = ((EditText) view.findViewById(R.id.item_name)).getText().toString();
+                                String description = ((EditText) view.findViewById(R.id.item_description)).getText().toString();
+                                ItemEntity item = new ItemEntity(name, description);
+                                final LinearLayout itemContainer = getView().findViewById(R.id.item_container);
+                                buildItemView(itemContainer, item);
+                                items.add(item);
+                            }
+                        })
+                        .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int wich){
+                                // do nothing
+                            }
+                        })
+                        .show();
                 break;
             }
             case R.id.add_note: {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                final LayoutInflater inflater = getActivity().getLayoutInflater();
+                final View view = inflater.inflate(R.layout.dialog_note_form, null);
+                builder.setTitle(R.string.note_form_title)
+                        .setView(view)
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int wich){
+                                String name = ((EditText) view.findViewById(R.id.note_name)).getText().toString();
+                                String description = ((EditText) view.findViewById(R.id.note_description)).getText().toString();
+                                NoteEntity note = new NoteEntity(name, description, null);
+                                final LinearLayout noteContainer = getView().findViewById(R.id.note_container);
+                                buildNoteView(noteContainer, note);
+                                notes.add(note);
+                            }
+                        })
+                        .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int wich){
+                                // do nothing
+                            }
+                        })
+                        .show();
                 break;
             }
         }

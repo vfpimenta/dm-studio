@@ -24,6 +24,30 @@ public class IOHandler {
         return loadData(context, CHARACTER_FILE);
     }
 
+    public static void storeLocationData(Context context, String content){
+        storeData(context, content, LOCATION_FILE);
+    }
+
+    public static String loadLocationData(Context context){
+        return loadData(context, LOCATION_FILE);
+    }
+
+    public static void storeItemData(Context context, String content){
+        storeData(context, content, ITEM_FILE);
+    }
+
+    public static String loadItemData(Context context){
+        return loadData(context, ITEM_FILE);
+    }
+
+    public static void storeNoteData(Context context, String content){
+        storeData(context, content, NOTE_FILE);
+    }
+
+    public static String loadNoteData(Context context){
+        return loadData(context, NOTE_FILE);
+    }
+
     private static void storeData(Context context, String content, String file){
         try{
             FileOutputStream fos = context.openFileOutput(file, context.MODE_PRIVATE);
