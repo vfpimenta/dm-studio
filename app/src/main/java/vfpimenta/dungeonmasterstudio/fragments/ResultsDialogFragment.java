@@ -6,9 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.Html;
 
-import vfpimenta.dungeonmasterstudio.R;
-import vfpimenta.dungeonmasterstudio.util.EncounterResult;
-
 public class ResultsDialogFragment extends DialogFragment {
 
     public static ResultsDialogFragment newInstance(String title, int easy, int medium, int hard, int deadly, int raw, double adjusted, String level) {

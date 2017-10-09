@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import java.util.List;
-
 import vfpimenta.dungeonmasterstudio.R;
 import vfpimenta.dungeonmasterstudio.exceptions.MissingFieldException;
 

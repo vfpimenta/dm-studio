@@ -1,7 +1,5 @@
 package vfpimenta.dungeonmasterstudio.util;
 
-import android.support.v4.content.res.TypedArrayUtils;
-
 import java.util.Arrays;
 import java.util.Collections;
 

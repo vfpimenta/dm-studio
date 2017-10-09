@@ -1,15 +1,10 @@
 package vfpimenta.dungeonmasterstudio.fragments;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import vfpimenta.dungeonmasterstudio.fragments.EncounterCalculatorFragment;
-import vfpimenta.dungeonmasterstudio.fragments.UnderConstructionFragment;
 
 public class TabFragmentPagerAdapter extends android.support.v4.app.FragmentPagerAdapter {
     private String tabTitles[] = new String[] { "Encounter calculator", "Campaign notes", "General resources" };
