@@ -175,9 +175,7 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                     imageView.setImageBitmap(character.getImage());
                     builder.setView(imageView);
                 }
-                builder.setTitle(R.string.character_info)
-                        .setMessage(Html.fromHtml(character.getHtml()))
-                        .show();
+                builder.setTitle(R.string.character_info).setMessage(Html.fromHtml(character.getHtml())).show();
             }
         });
         characterView.findViewById(R.id.remove_entity).setOnClickListener(new View.OnClickListener(){
@@ -211,12 +209,12 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
             @Override
             public void onClick(View v){
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
-                builder.setTitle(R.string.location_info);
-                builder.setMessage(Html.fromHtml(
-                        "Name: "+location.getName()+"<br/>"+
-                                "Description: "+location.getDescription()+"<br/>"
-                ))
-                        .show();
+                if(location.getImage() != null){
+                    ImageView imageView = new ImageView(getContext());
+                    imageView.setImageBitmap(location.getImage());
+                    builder.setView(imageView);
+                }
+                builder.setTitle(R.string.location_info).setMessage(Html.fromHtml(location.getHtml())).show();
             }
         });
         locationView.findViewById(R.id.remove_entity).setOnClickListener(new View.OnClickListener(){
@@ -366,16 +364,29 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 final LayoutInflater inflater = getActivity().getLayoutInflater();
                 final View view = inflater.inflate(R.layout.dialog_location_form, null);
+                setDialog(view);
+                view.findViewById(R.id.add_location_img).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Choose Picture"), LOCATION_CODE);
+                    }
+                });
                 builder.setTitle(R.string.location_form_title)
                         .setView(view)
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int wich){
-                                String name = ((EditText) view.findViewById(R.id.location_name)).getText().toString();
-                                String description = ((EditText) view.findViewById(R.id.location_description)).getText().toString();
-                                LocationEntity location = new LocationEntity(name, description, null, null, null);
-                                final LinearLayout locationContainer = getView().findViewById(R.id.location_container);
-                                buildLocationView(locationContainer, location);
-                                locations.add(location);
+                                try{
+                                    LocationEntity location = LocationEntity.init(view, getImg(), getResources());
+
+                                    final LinearLayout locationContainer = getView().findViewById(R.id.location_container);
+                                    buildLocationView(locationContainer, location);
+                                    locations.add(location);
+                                } catch (MissingFieldException e){
+                                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
                             }
                         })
                         .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener(){

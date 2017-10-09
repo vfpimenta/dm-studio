@@ -12,14 +12,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:padding="10dip"
-                android:text="Name: " />
+                android:text="@string/label_name" />
             <EditText
                 android:id="@+id/note_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dip"
                 android:maxWidth="200dip"
-                android:hint="Riddle or note name" />
+                android:hint="@string/hint_note_name" />
         </TableRow>
         <TableRow>
             <TextView
@@ -27,14 +27,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:padding="10dip"
-                android:text="Description: " />
+                android:text="@string/label_description" />
             <EditText
                 android:id="@+id/note_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dip"
                 android:maxWidth="200dip"
-                android:hint="General info, meaning, etc" />
+                android:hint="@string/hint_note_description" />
         </TableRow>
     </TableLayout>
 </LinearLayout>

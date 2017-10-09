@@ -12,14 +12,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:padding="10dip"
-                android:text="Name: " />
+                android:text="@string/label_name" />
             <EditText
                 android:id="@+id/character_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dip"
                 android:maxWidth="200dip"
-                android:hint="Character name" />
+                android:hint="@string/hint_character_name" />
         </TableRow>
         <TableRow>
             <TextView
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:padding="10dip"
-                android:text="Race: " />
+                android:text="@string/label_character_race" />
             <Spinner
                 android:id="@+id/character_race"
                 android:entries="@array/character_race"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:padding="10dip"
-                android:text="Role: " />
+                android:text="@string/label_character_role" />
             <Spinner
                 android:id="@+id/character_role"
                 android:entries="@array/character_role"
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:padding="10dip"
-                android:text="Gold pieces: " />
+                android:text="@string/label_character_gold" />
             <EditText
                 android:id="@+id/character_gold"
                 android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                 android:padding="10dip"
                 android:maxWidth="200dip"
                 android:inputType="number"
-                android:hint="Gold carried" />
+                android:hint="@string/hint_character_gold" />
         </TableRow>
         <TableRow>
             <TextView
@@ -71,14 +71,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:padding="10dip"
-                android:text="Description: " />
+                android:text="@string/label_description" />
             <EditText
                 android:id="@+id/character_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dip"
                 android:maxWidth="200dip"
-                android:hint="General info, appearance, etc" />
+                android:hint="@string/hint_character_description" />
         </TableRow>
         <TableRow>
             <TextView
@@ -86,12 +86,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:padding="10dip"
-                android:text="Image: " />
+                android:text="@string/label_img" />
             <Button
                 android:id="@+id/add_character_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Upload"/>
+                android:text="@string/upload"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>

@@ -96,16 +96,16 @@
             android:id="@+id/calculate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:background="@drawable/action_button"
-            android:drawableLeft="@android:drawable/ic_media_play"
-            android:text="@string/calculate"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/primaryText"
+            android:drawableLeft="@android:drawable/ic_menu_view"
+            android:paddingBottom="5dip"
             android:paddingLeft="20dip"
             android:paddingRight="20dip"
-            android:paddingBottom="5dip"
             android:paddingTop="5dip"
-            android:layout_centerInParent="true"/>
+            android:text="@string/calculate"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/primaryText" />
     </RelativeLayout>
 
 </LinearLayout>

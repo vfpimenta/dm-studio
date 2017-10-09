@@ -12,14 +12,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:padding="10dip"
-                android:text="Name: " />
+                android:text="@string/label_name" />
             <EditText
                 android:id="@+id/location_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dip"
                 android:maxWidth="200dip"
-                android:hint="Location name" />
+                android:hint="@string/hint_location_name" />
         </TableRow>
         <TableRow>
             <TextView
@@ -27,14 +27,70 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:padding="10dip"
-                android:text="Description: " />
+                android:text="@string/label_location_address" />
+            <EditText
+                android:id="@+id/location_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:maxWidth="200dip"
+                android:hint="@string/hint_location_address" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dip"
+                android:text="@string/label_location_people" />
+
+            <Button
+                android:id="@+id/add_location_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="right" />
+
+            <LinearLayout
+                android:id="@+id/people_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dip"
+                android:text="@string/label_description" />
             <EditText
                 android:id="@+id/location_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dip"
                 android:maxWidth="200dip"
-                android:hint="General info, history, etc" />
+                android:hint="@string/hint_location_description" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dip"
+                android:text="@string/label_img" />
+            <Button
+                android:id="@+id/add_location_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/upload"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>

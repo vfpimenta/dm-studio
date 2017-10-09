@@ -3,7 +3,7 @@ package vfpimenta.dungeonmasterstudio.entities;
 import android.graphics.Bitmap;
 
 public class BasicEntity {
-    private String name;
+    private String name;            // required field
     private String description;
     private Bitmap image;
 

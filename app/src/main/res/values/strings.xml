@@ -74,6 +74,9 @@
     </string-array>
 
     <!-- Campaign notes tab -->
+    <string name="upload">Upload</string>
+    <string name="add">Add new</string>
+
     <string name="character_header">Non Playable Characters</string>
     <string name="location_header">Locations</string>
     <string name="item_header">Items</string>
@@ -132,4 +135,24 @@
         <item>Veteran</item>
     </string-array>
 
+    <string name="label_name">Name: </string>
+    <string name="label_description">Description: </string>
+    <string name="label_img">Image: </string>
+    <string name="label_character_race">Race: </string>
+    <string name="label_character_role">Role: </string>
+    <string name="label_character_gold">Gold pieces: </string>
+    <string name="label_location_address">Address: </string>
+    <string name="label_location_places">Places: </string>
+    <string name="label_location_people">People: </string>
+
+    <string name="hint_character_name">Character name</string>
+    <string name="hint_character_gold">Gold carried</string>
+    <string name="hint_character_description">General info, appearance, etc</string>
+    <string name="hint_location_name">Location name</string>
+    <string name="hint_location_address">Where it is located</string>
+    <string name="hint_location_description">General info, history, etc</string>
+    <string name="hint_item_name">Item name</string>
+    <string name="hint_item_description">General info, magic properties, etc</string>
+    <string name="hint_note_name">Riddle or note name</string>
+    <string name="hint_note_description">General info, meaning, etc</string>
 </resources>
