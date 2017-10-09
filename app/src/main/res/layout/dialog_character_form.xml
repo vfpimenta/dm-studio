@@ -80,5 +80,18 @@
                 android:maxWidth="200dip"
                 android:hint="General info, appearance, etc" />
         </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dip"
+                android:text="Image: " />
+            <Button
+                android:id="@+id/add_character_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload"/>
+        </TableRow>
     </TableLayout>
 </LinearLayout>

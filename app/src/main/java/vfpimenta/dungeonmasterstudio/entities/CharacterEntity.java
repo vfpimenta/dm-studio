@@ -1,6 +1,7 @@
 package vfpimenta.dungeonmasterstudio.entities;
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -19,14 +20,14 @@ public class CharacterEntity extends BasicEntity{
         super(name);
     }
 
-    public CharacterEntity(String name, String description, String race, String role, int gold) {
-        super(name, description);
+    public CharacterEntity(String name, String description, Bitmap image, String race, String role, int gold) {
+        super(name, description, image);
         this.race = race;
         this.role = role;
         this.gold = gold;
     }
 
-    public static CharacterEntity init(View view, Resources resources) throws MissingFieldException {
+    public static CharacterEntity init(View view, Bitmap img, Resources resources) throws MissingFieldException {
         String name = ((EditText) view.findViewById(R.id.character_name)).getText().toString();
         if(name.isEmpty()){
             throw new MissingFieldException("name");
@@ -50,6 +51,9 @@ public class CharacterEntity extends BasicEntity{
         }
         if(!goldStr.isEmpty()){
             character.setGold(Integer.parseInt(goldStr));
+        }
+        if(img != null){
+            character.setImage(img);
         }
 
         return character;

@@ -1,7 +1,12 @@
 package vfpimenta.dungeonmasterstudio.fragments;
 
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -10,10 +15,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +45,10 @@ import vfpimenta.dungeonmasterstudio.exceptions.MissingFieldException;
 import vfpimenta.dungeonmasterstudio.util.IOHandler;
 
 public class CampaignNotesFragment extends Fragment implements View.OnClickListener {
+    private static final int CHARACTER_CODE = 0;
+    private static final int LOCATION_CODE = 1;
+    private static final int ITEM_CODE = 2;
+    private static final int NOTE_CODE = 3;
 
     private List<CharacterEntity> characters = new ArrayList<>();
     private List<LocationEntity> locations = new ArrayList<>();
@@ -46,6 +59,24 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
 
     private int mPage;
     private Gson gson;
+    private View dialog;
+    private Bitmap img;
+
+    public View getDialog() {
+        return dialog;
+    }
+
+    public void setDialog(View dialog) {
+        this.dialog = dialog;
+    }
+
+    public Bitmap getImg() {
+        return img;
+    }
+
+    public void setImg(Bitmap img) {
+        this.img = img;
+    }
 
     public static CampaignNotesFragment newInstance(int page) {
         Bundle args = new Bundle();
@@ -147,6 +178,11 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
             @Override
             public void onClick(View v){
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
+                if(character.getImage() != null){
+                    ImageView imageView = new ImageView(getContext());
+                    imageView.setImageBitmap(character.getImage());
+                    builder.setView(imageView);
+                }
                 builder.setTitle(R.string.character_info)
                         .setMessage(Html.fromHtml(character.getHtml()))
                         .show();
@@ -301,12 +337,22 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 final LayoutInflater inflater = getActivity().getLayoutInflater();
                 final View view = inflater.inflate(R.layout.dialog_character_form, null);
+                setDialog(view);
+                view.findViewById(R.id.add_character_img).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Choose Picture"), CHARACTER_CODE);
+                    }
+                });
                 builder.setTitle(R.string.character_form_title)
                         .setView(view)
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int wich){
                                 try{
-                                    CharacterEntity character = CharacterEntity.init(view, getResources());
+                                    CharacterEntity character = CharacterEntity.init(view, getImg(), getResources());
 
                                     final LinearLayout characterContainer = getView().findViewById(R.id.character_container);
                                     buildCharacterView(characterContainer, character);
@@ -334,7 +380,7 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                             public void onClick(DialogInterface dialog, int wich){
                                 String name = ((EditText) view.findViewById(R.id.location_name)).getText().toString();
                                 String description = ((EditText) view.findViewById(R.id.location_description)).getText().toString();
-                                LocationEntity location = new LocationEntity(name, description, null, null);
+                                LocationEntity location = new LocationEntity(name, description, null, null, null);
                                 final LinearLayout locationContainer = getView().findViewById(R.id.location_container);
                                 buildLocationView(locationContainer, location);
                                 locations.add(location);
@@ -358,7 +404,7 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                             public void onClick(DialogInterface dialog, int wich){
                                 String name = ((EditText) view.findViewById(R.id.item_name)).getText().toString();
                                 String description = ((EditText) view.findViewById(R.id.item_description)).getText().toString();
-                                ItemEntity item = new ItemEntity(name, description);
+                                ItemEntity item = new ItemEntity(name, description, null);
                                 final LinearLayout itemContainer = getView().findViewById(R.id.item_container);
                                 buildItemView(itemContainer, item);
                                 items.add(item);
@@ -382,7 +428,7 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                             public void onClick(DialogInterface dialog, int wich){
                                 String name = ((EditText) view.findViewById(R.id.note_name)).getText().toString();
                                 String description = ((EditText) view.findViewById(R.id.note_description)).getText().toString();
-                                NoteEntity note = new NoteEntity(name, description, null);
+                                NoteEntity note = new NoteEntity(name, description, null, null);
                                 final LinearLayout noteContainer = getView().findViewById(R.id.note_container);
                                 buildNoteView(noteContainer, note);
                                 notes.add(note);
@@ -395,6 +441,36 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                         })
                         .show();
                 break;
+            }
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == Activity.RESULT_OK) {
+            Uri selectedImg = data.getData();
+            switch(requestCode){
+                case CHARACTER_CODE:
+                    TableRow buttonRow = (TableRow) getDialog().findViewById(R.id.add_character_img).getParent();
+                    TextView textView = new TextView(this.getContext());
+                    textView.setText(data.getDataString().substring(data.getDataString().lastIndexOf('/')));
+
+                    buttonRow.removeView(getDialog().findViewById(R.id.add_character_img));
+                    buttonRow.addView(textView);
+
+                    break;
+                case LOCATION_CODE:
+                    break;
+                case ITEM_CODE:
+                    break;
+                case NOTE_CODE:
+                    break;
+            }
+
+            try {
+                setImg(MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), selectedImg));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
