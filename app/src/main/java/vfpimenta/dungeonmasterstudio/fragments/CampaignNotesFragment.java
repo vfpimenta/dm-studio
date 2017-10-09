@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -30,6 +32,7 @@ import vfpimenta.dungeonmasterstudio.entities.CharacterEntity;
 import vfpimenta.dungeonmasterstudio.entities.ItemEntity;
 import vfpimenta.dungeonmasterstudio.entities.LocationEntity;
 import vfpimenta.dungeonmasterstudio.entities.NoteEntity;
+import vfpimenta.dungeonmasterstudio.exceptions.MissingFieldException;
 import vfpimenta.dungeonmasterstudio.util.IOHandler;
 
 public class CampaignNotesFragment extends Fragment implements View.OnClickListener {
@@ -144,12 +147,9 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
             @Override
             public void onClick(View v){
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
-                builder.setTitle(R.string.character_info);
-                builder.setMessage(Html.fromHtml(
-                        "Name: "+character.getName()+"<br/>"+
-                                "Description: "+character.getDescription()+"<br/>"
-                ))
-                .show();
+                builder.setTitle(R.string.character_info)
+                        .setMessage(Html.fromHtml(character.getHtml()))
+                        .show();
             }
         });
         characterView.findViewById(R.id.remove_entity).setOnClickListener(new View.OnClickListener(){
@@ -305,12 +305,15 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                         .setView(view)
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int wich){
-                                String name = ((EditText) view.findViewById(R.id.character_name)).getText().toString();
-                                String description = ((EditText) view.findViewById(R.id.character_description)).getText().toString();
-                                CharacterEntity character = new CharacterEntity(name, description, null);
-                                final LinearLayout characterContainer = getView().findViewById(R.id.character_container);
-                                buildCharacterView(characterContainer, character);
-                                characters.add(character);
+                                try{
+                                    CharacterEntity character = CharacterEntity.init(view, getResources());
+
+                                    final LinearLayout characterContainer = getView().findViewById(R.id.character_container);
+                                    buildCharacterView(characterContainer, character);
+                                    characters.add(character);
+                                } catch(MissingFieldException e){
+                                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
                             }
                         })
                         .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener(){

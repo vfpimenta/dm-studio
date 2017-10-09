@@ -27,6 +27,50 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:padding="10dip"
+                android:text="Race: " />
+            <Spinner
+                android:id="@+id/character_race"
+                android:entries="@array/character_race"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="visible" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dip"
+                android:text="Role: " />
+            <Spinner
+                android:id="@+id/character_role"
+                android:entries="@array/character_role"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="visible" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dip"
+                android:text="Gold pieces: " />
+            <EditText
+                android:id="@+id/character_gold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:maxWidth="200dip"
+                android:inputType="number"
+                android:hint="Gold carried" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dip"
                 android:text="Description: " />
             <EditText
                 android:id="@+id/character_description"
