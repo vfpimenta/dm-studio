@@ -22,3 +22,6 @@
 * Added a color for the challenge level on the calculator.
 * Updated the calculate button to be more noticeable.
 * Other minor fixes.
+
+## v1.1.1
+* Fixed a bug where entities created with pictures woud not be saved.
