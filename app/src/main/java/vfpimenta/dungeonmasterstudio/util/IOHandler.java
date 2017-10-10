@@ -1,6 +1,8 @@
 package vfpimenta.dungeonmasterstudio.util;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import java.io.FileInputStream;
@@ -80,5 +82,29 @@ public class IOHandler {
         }
 
         return "";
+    }
+
+    public static void storeImage(Context context, Bitmap imgData, String imgName){
+        try {
+            FileOutputStream fos = context.openFileOutput(imgName, context.MODE_PRIVATE);
+            imgData.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        }catch (FileNotFoundException fnfe) {
+            Log.e(PERSISTENCE_EXCEPTION_TAG, fnfe.getMessage());
+        } catch (IOException ioe) {
+            Log.e(PERSISTENCE_EXCEPTION_TAG, ioe.getMessage());
+        }
+    }
+
+    public static Bitmap loadImage(Context context, String imgName){
+        Bitmap image = null;
+        try {
+            FileInputStream fis = context.openFileInput(imgName);
+            image = BitmapFactory.decodeStream(fis);
+        } catch (FileNotFoundException fnfe) {
+            Log.e(PERSISTENCE_EXCEPTION_TAG, fnfe.getMessage());
+        } catch (IOException ioe) {
+            Log.e(PERSISTENCE_EXCEPTION_TAG, ioe.getMessage());
+        }
+        return image;
     }
 }

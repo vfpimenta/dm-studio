@@ -1,20 +1,26 @@
 package vfpimenta.dungeonmasterstudio.entities;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
+
+import java.io.IOException;
+
+import vfpimenta.dungeonmasterstudio.util.IOHandler;
 
 public abstract class BasicEntity {
+    private int _id;                // key for image retrieval
     private String name;            // required field
     private String description;
-    private Bitmap image;
 
     public BasicEntity(String name){
+        this._id = this.hashCode();
         this.name = name;
     }
 
-    public BasicEntity(String name, String description, Bitmap image) {
-        this.name = name;
-        this.description = description;
-        this.image = image;
+    protected String getId() {
+        return _id+"";
     }
 
     public String getName() {
@@ -33,12 +39,10 @@ public abstract class BasicEntity {
         this.description = description;
     }
 
-    public Bitmap getImage() {
-        return image;
-    }
-
-    public void setImage(Bitmap image) {
-        this.image = image;
+    public Bitmap getImage(Context context) {
+        return IOHandler.loadImage(context, getId());
+        //Uri imageUri = Uri.parse(getImageStr());
+        //return MediaStore.Images.Media.getBitmap(context.getContentResolver(), imageUri);
     }
 
     public abstract String toHtml();

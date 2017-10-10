@@ -1,7 +1,9 @@
 package vfpimenta.dungeonmasterstudio.entities;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -9,6 +11,7 @@ import android.widget.Spinner;
 
 import vfpimenta.dungeonmasterstudio.R;
 import vfpimenta.dungeonmasterstudio.exceptions.MissingFieldException;
+import vfpimenta.dungeonmasterstudio.util.IOHandler;
 
 public class ItemEntity extends BasicEntity{
     private String type;
@@ -19,14 +22,7 @@ public class ItemEntity extends BasicEntity{
         super(name);
     }
 
-    public ItemEntity(String name, String description, Bitmap image, String type, String rarity, boolean attuned) {
-        super(name, description, image);
-        this.type = type;
-        this.rarity = rarity;
-        this.attuned = attuned;
-    }
-
-    public static ItemEntity init(View view, Bitmap img, Resources resources) throws MissingFieldException {
+    public static ItemEntity init(Context context, View view, Bitmap img, Resources resources) throws MissingFieldException {
         String name = ((EditText) view.findViewById(R.id.item_name)).getText().toString();
         if (name.isEmpty()) {
             throw new MissingFieldException("name");
@@ -51,7 +47,7 @@ public class ItemEntity extends BasicEntity{
             item.setDescription(description);
         }
         if (img != null) {
-            item.setImage(img);
+            IOHandler.storeImage(context, img, item.getId());
         }
 
         return item;

@@ -1,11 +1,14 @@
 package vfpimenta.dungeonmasterstudio.entities;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.view.View;
 import android.widget.EditText;
 
 import vfpimenta.dungeonmasterstudio.R;
 import vfpimenta.dungeonmasterstudio.exceptions.MissingFieldException;
+import vfpimenta.dungeonmasterstudio.util.IOHandler;
 
 public class NoteEntity extends BasicEntity {
     private String condition;
@@ -15,13 +18,7 @@ public class NoteEntity extends BasicEntity {
         super(name);
     }
 
-    public NoteEntity(String name, String description, Bitmap image, String condition, String action) {
-        super(name, description, image);
-        this.condition = condition;
-        this.action = action;
-    }
-
-    public static NoteEntity init(View view, Bitmap img) throws MissingFieldException {
+    public static NoteEntity init(Context context, View view, Bitmap img) throws MissingFieldException {
         String name = ((EditText) view.findViewById(R.id.note_name)).getText().toString();
         if (name.isEmpty()) {
             throw new MissingFieldException("name");
@@ -43,7 +40,7 @@ public class NoteEntity extends BasicEntity {
             note.setAction(action);
         }
         if (img != null) {
-            note.setImage(img);
+            IOHandler.storeImage(context, img, note.getId());
         }
 
         return note;

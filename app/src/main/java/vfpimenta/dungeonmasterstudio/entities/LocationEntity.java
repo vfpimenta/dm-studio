@@ -1,7 +1,9 @@
 package vfpimenta.dungeonmasterstudio.entities;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -12,6 +14,7 @@ import java.util.List;
 
 import vfpimenta.dungeonmasterstudio.R;
 import vfpimenta.dungeonmasterstudio.exceptions.MissingFieldException;
+import vfpimenta.dungeonmasterstudio.util.IOHandler;
 
 public class LocationEntity extends BasicEntity {
     private String address;
@@ -21,13 +24,7 @@ public class LocationEntity extends BasicEntity {
         super(name);
     }
 
-    public LocationEntity(String name, String description, Bitmap image, String address, List<String> people) {
-        super(name, description, image);
-        this.address = address;
-        this.people = people;
-    }
-
-    public static LocationEntity init(View view, Bitmap img) throws MissingFieldException {
+    public static LocationEntity init(Context context, View view, Bitmap img) throws MissingFieldException {
         String name = ((EditText) view.findViewById(R.id.location_name)).getText().toString();
         if (name.isEmpty()) {
             throw new MissingFieldException("name");
@@ -54,7 +51,7 @@ public class LocationEntity extends BasicEntity {
             location.setDescription(description);
         }
         if (img != null) {
-            location.setImage(img);
+            IOHandler.storeImage(context, img, location.getId());
         }
 
         return location;

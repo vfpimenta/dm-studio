@@ -1,13 +1,16 @@
 package vfpimenta.dungeonmasterstudio.entities;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import vfpimenta.dungeonmasterstudio.R;
 import vfpimenta.dungeonmasterstudio.exceptions.MissingFieldException;
+import vfpimenta.dungeonmasterstudio.util.IOHandler;
 
 public class CharacterEntity extends BasicEntity{
     private String race;                // human, dwarf, pixie, etc
@@ -18,14 +21,7 @@ public class CharacterEntity extends BasicEntity{
         super(name);
     }
 
-    public CharacterEntity(String name, String description, Bitmap image, String race, String role, int gold) {
-        super(name, description, image);
-        this.race = race;
-        this.role = role;
-        this.gold = gold;
-    }
-
-    public static CharacterEntity init(View view, Bitmap img, Resources resources) throws MissingFieldException {
+    public static CharacterEntity init(Context context, View view, Bitmap img, Resources resources) throws MissingFieldException {
         String name = ((EditText) view.findViewById(R.id.character_name)).getText().toString();
         if(name.isEmpty()){
             throw new MissingFieldException("name");
@@ -51,7 +47,7 @@ public class CharacterEntity extends BasicEntity{
             character.setGold(Integer.parseInt(goldStr));
         }
         if(img != null){
-            character.setImage(img);
+            IOHandler.storeImage(context, img, character.getId());
         }
 
         return character;
