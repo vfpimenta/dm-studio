@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -319,16 +320,28 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 final LayoutInflater inflater = getActivity().getLayoutInflater();
                 final View view = inflater.inflate(R.layout.dialog_item_form, null);
+                view.findViewById(R.id.add_item_img).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View _view) {
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Choose Picture"), ITEM_CODE);
+                    }
+                });
                 builder.setTitle(R.string.item_form_title)
                         .setView(view)
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int wich){
-                                String name = ((EditText) view.findViewById(R.id.item_name)).getText().toString();
-                                String description = ((EditText) view.findViewById(R.id.item_description)).getText().toString();
-                                ItemEntity item = new ItemEntity(name, description, null);
-                                final LinearLayout itemContainer = getView().findViewById(R.id.item_container);
-                                buildItemView(itemContainer, item);
-                                items.add(item);
+                                try {
+                                    ItemEntity item = ItemEntity.init(view, getImg(), getResources());
+
+                                    final LinearLayout itemContainer = getView().findViewById(R.id.item_container);
+                                    buildItemView(itemContainer, item);
+                                    items.add(item);
+                                } catch (MissingFieldException e){
+                                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
                             }
                         })
                         .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener(){
@@ -370,23 +383,27 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == Activity.RESULT_OK) {
             Uri selectedImg = data.getData();
+            int buttonId = 0;
             switch(requestCode){
                 case CHARACTER_CODE:
-                    TableRow buttonRow = (TableRow) getDialog().findViewById(R.id.add_character_img).getParent();
-                    TextView textView = new TextView(this.getContext());
-                    textView.setText(data.getDataString().substring(data.getDataString().lastIndexOf('/')));
-
-                    buttonRow.removeView(getDialog().findViewById(R.id.add_character_img));
-                    buttonRow.addView(textView);
-
+                    buttonId = R.id.add_character_img;
                     break;
                 case LOCATION_CODE:
+                    buttonId = R.id.add_location_img;
                     break;
                 case ITEM_CODE:
+                    buttonId = R.id.add_item_img;
                     break;
                 case NOTE_CODE:
+                    //buttonId = R.id.add_note_img;
                     break;
             }
+
+            TableRow buttonRow = (TableRow) getDialog().findViewById(buttonId).getParent();
+            TextView textView = new TextView(this.getContext());
+            textView.setText(data.getDataString().substring(data.getDataString().lastIndexOf('/')));
+            buttonRow.removeView(getDialog().findViewById(buttonId));
+            buttonRow.addView(textView);
 
             try {
                 setImg(MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), selectedImg));

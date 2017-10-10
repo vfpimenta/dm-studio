@@ -27,6 +27,55 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:padding="10dip"
+                android:text="@string/label_item_type" />
+            <Spinner
+                android:id="@+id/item_type"
+                android:entries="@array/item_type"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="visible" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dip"
+                android:text="@string/label_item_rarity" />
+            <Spinner
+                android:id="@+id/item_rarity"
+                android:entries="@array/item_rarity"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="visible" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dip"
+                android:text="@string/label_item_attuned" />
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/attuned_true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attunement_requeired"/>
+                <RadioButton android:id="@+id/attuned_false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attunement_not_requeired"/>
+            </RadioGroup>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dip"
                 android:text="@string/label_description" />
             <EditText
                 android:id="@+id/item_description"
@@ -35,6 +84,19 @@
                 android:padding="10dip"
                 android:maxWidth="200dip"
                 android:hint="@string/hint_item_description" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dip"
+                android:text="@string/label_img" />
+            <Button
+                android:id="@+id/add_item_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/upload"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>

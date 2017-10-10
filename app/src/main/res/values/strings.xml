@@ -135,6 +135,27 @@
         <item>Veteran</item>
     </string-array>
 
+    <string-array name="item_type">
+        <item>Select type</item>
+        <item>Armor</item>
+        <item>Potion</item>
+        <item>Ring</item>
+        <item>Rod</item>
+        <item>Scroll</item>
+        <item>Staff</item>
+        <item>Wand</item>
+        <item>Wondrous item</item>
+    </string-array>
+
+    <string-array name="item_rarity">
+        <item>Select rarity</item>
+        <item>Common</item>
+        <item>Uncommon</item>
+        <item>Rare</item>
+        <item>Very rare</item>
+        <item>Legendary</item>
+    </string-array>
+
     <string name="label_name">Name: </string>
     <string name="label_description">Description: </string>
     <string name="label_img">Image: </string>
@@ -144,6 +165,9 @@
     <string name="label_location_address">Address: </string>
     <string name="label_location_places">Places: </string>
     <string name="label_location_people">People: </string>
+    <string name="label_item_type">Type: </string>
+    <string name="label_item_rarity">Rarity: </string>
+    <string name="label_item_attuned">Attunement: </string>
 
     <string name="hint_character_name">Character name</string>
     <string name="hint_character_gold">Gold carried</string>
@@ -155,4 +179,7 @@
     <string name="hint_item_description">General info, magic properties, etc</string>
     <string name="hint_note_name">Riddle or note name</string>
     <string name="hint_note_description">General info, meaning, etc</string>
+
+    <string name="attunement_requeired">Required</string>
+    <string name="attunement_not_requeired">Not required</string>
 </resources>
