@@ -17,4 +17,9 @@ public class NoteEntity extends BasicEntity {
     public void setCondition(String condition) {
         this.condition = condition;
     }
+
+    @Override
+    public String toHtml() {
+        return null;
+    }
 }

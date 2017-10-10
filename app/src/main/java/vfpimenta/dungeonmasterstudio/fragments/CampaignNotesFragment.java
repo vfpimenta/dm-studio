@@ -13,10 +13,12 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vfpimenta.dungeonmasterstudio.R;
+import vfpimenta.dungeonmasterstudio.entities.BasicEntity;
 import vfpimenta.dungeonmasterstudio.entities.CharacterEntity;
 import vfpimenta.dungeonmasterstudio.entities.ItemEntity;
 import vfpimenta.dungeonmasterstudio.entities.LocationEntity;
@@ -164,18 +167,34 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
         }
     }
 
-    private void buildCharacterView(final LinearLayout characterContainer, final CharacterEntity character){
+    private void buildCharacterView(final LinearLayout container, final BasicEntity entity){
+        buildView(container, entity, R.string.character_info);
+    }
+
+    private void buildLocationView(final LinearLayout container, final BasicEntity entity){
+        buildView(container, entity, R.string.location_info);
+    }
+
+    private void buildItemView(final LinearLayout container, final BasicEntity entity){
+        buildView(container, entity, R.string.item_info);
+    }
+
+    private void buildNoteView(final LinearLayout container, final BasicEntity entity){
+        buildView(container, entity, R.string.note_info);
+    }
+
+    private void buildView(final LinearLayout container, final BasicEntity entity, final int title){
         View characterView = getActivity().getLayoutInflater().inflate(R.layout.view_entity_layout, null);
         characterView.findViewById(R.id.entity_info).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
-                if(character.getImage() != null){
+                if(entity.getImage() != null){
                     ImageView imageView = new ImageView(getContext());
-                    imageView.setImageBitmap(character.getImage());
+                    imageView.setImageBitmap(entity.getImage());
                     builder.setView(imageView);
                 }
-                builder.setTitle(R.string.character_info).setMessage(Html.fromHtml(character.getHtml())).show();
+                builder.setTitle(title).setMessage(Html.fromHtml(entity.toHtml())).show();
             }
         });
         characterView.findViewById(R.id.remove_entity).setOnClickListener(new View.OnClickListener(){
@@ -186,8 +205,8 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                         .setMessage(R.string.confirm_deletion_message)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int wich){
-                                characters.remove(character);
-                                characterContainer.removeView((View) v.getParent());
+                                characters.remove(entity);
+                                container.removeView((View) v.getParent());
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener(){
@@ -199,125 +218,8 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                         .show();
             }
         });
-        ((TextView) characterView.findViewById(R.id.entity_label)).setText(character.getName());
-        characterContainer.addView(characterView);
-    }
-
-    private void buildLocationView(final LinearLayout locationContainer, final LocationEntity location){
-        View locationView = getActivity().getLayoutInflater().inflate(R.layout.view_entity_layout, null);
-        locationView.findViewById(R.id.entity_info).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
-                if(location.getImage() != null){
-                    ImageView imageView = new ImageView(getContext());
-                    imageView.setImageBitmap(location.getImage());
-                    builder.setView(imageView);
-                }
-                builder.setTitle(R.string.location_info).setMessage(Html.fromHtml(location.getHtml())).show();
-            }
-        });
-        locationView.findViewById(R.id.remove_entity).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(final View v){
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle(R.string.confirm_deletion_title)
-                        .setMessage(R.string.confirm_deletion_message)
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int wich){
-                                locations.remove(location);
-                                locationContainer.removeView((View) v.getParent());
-                            }
-                        })
-                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int wich){
-                                // do nothing
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
-            }
-        });
-        ((TextView) locationView.findViewById(R.id.entity_label)).setText(location.getName());
-        locationContainer.addView(locationView);
-    }
-
-    private void buildItemView(final LinearLayout itemContainer, final ItemEntity item){
-        View itemView = getActivity().getLayoutInflater().inflate(R.layout.view_entity_layout, null);
-        itemView.findViewById(R.id.entity_info).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
-                builder.setTitle(R.string.item_info);
-                builder.setMessage(Html.fromHtml(
-                        "Name: "+item.getName()+"<br/>"+
-                                "Description: "+item.getDescription()+"<br/>"
-                ))
-                        .show();
-            }
-        });
-        itemView.findViewById(R.id.remove_entity).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(final View v){
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle(R.string.confirm_deletion_title)
-                        .setMessage(R.string.confirm_deletion_message)
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int wich){
-                                items.remove(item);
-                                itemContainer.removeView((View) v.getParent());
-                            }
-                        })
-                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int wich){
-                                // do nothing
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
-            }
-        });
-        ((TextView) itemView.findViewById(R.id.entity_label)).setText(item.getName());
-        itemContainer.addView(itemView);
-    }
-
-    private void buildNoteView(final LinearLayout noteContainer, final NoteEntity note){
-        View noteView = getActivity().getLayoutInflater().inflate(R.layout.view_entity_layout, null);
-        noteView.findViewById(R.id.entity_info).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
-                builder.setTitle(R.string.note_info);
-                builder.setMessage(Html.fromHtml(
-                        "Name: "+note.getName()+"<br/>"+
-                                "Description: "+note.getDescription()+"<br/>"
-                ))
-                        .show();
-            }
-        });
-        noteView.findViewById(R.id.remove_entity).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(final View v){
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle(R.string.confirm_deletion_title)
-                        .setMessage(R.string.confirm_deletion_message)
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int wich){
-                                notes.remove(note);
-                                noteContainer.removeView((View) v.getParent());
-                            }
-                        })
-                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int wich){
-                                // do nothing
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
-            }
-        });
-        ((TextView) noteView.findViewById(R.id.entity_label)).setText(note.getName());
-        noteContainer.addView(noteView);
+        ((TextView) characterView.findViewById(R.id.entity_label)).setText(entity.getName());
+        container.addView(characterView);
     }
 
     @Override
@@ -330,7 +232,7 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                 setDialog(view);
                 view.findViewById(R.id.add_character_img).setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
+                    public void onClick(View _view) {
                         Intent intent = new Intent();
                         intent.setType("image/*");
                         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -367,11 +269,27 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                 setDialog(view);
                 view.findViewById(R.id.add_location_img).setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
+                    public void onClick(View _view) {
                         Intent intent = new Intent();
                         intent.setType("image/*");
                         intent.setAction(Intent.ACTION_GET_CONTENT);
                         startActivityForResult(Intent.createChooser(intent, "Choose Picture"), LOCATION_CODE);
+                    }
+                });
+                view.findViewById(R.id.add_location_person).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View _view) {
+                        LinearLayout peopleContainer = view.findViewById(R.id.people_container);
+                        Spinner peopleSpinner = new Spinner(getContext());
+                        List<String> spinnerArray =  new ArrayList<>();
+                        for(CharacterEntity character : characters){
+                            spinnerArray.add(character.getName());
+                        }
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, spinnerArray);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        peopleSpinner.setAdapter(adapter);
+
+                        peopleContainer.addView(peopleSpinner);
                     }
                 });
                 builder.setTitle(R.string.location_form_title)
@@ -379,7 +297,7 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int wich){
                                 try{
-                                    LocationEntity location = LocationEntity.init(view, getImg(), getResources());
+                                    LocationEntity location = LocationEntity.init(view, getImg());
 
                                     final LinearLayout locationContainer = getView().findViewById(R.id.location_container);
                                     buildLocationView(locationContainer, location);

@@ -4,7 +4,10 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import vfpimenta.dungeonmasterstudio.R;
@@ -24,16 +27,29 @@ public class LocationEntity extends BasicEntity {
         this.people = people;
     }
 
-    public static LocationEntity init(View view, Bitmap img, Resources resources) throws MissingFieldException {
+    public static LocationEntity init(View view, Bitmap img) throws MissingFieldException {
         String name = ((EditText) view.findViewById(R.id.location_name)).getText().toString();
         if (name.isEmpty()) {
             throw new MissingFieldException("name");
         }
 
+        List<String> people = new ArrayList<>();
+        LinearLayout peopleContainer = view.findViewById(R.id.people_container);
+        for (int i = 0; i < peopleContainer.getChildCount(); i++) {
+            Spinner person = (Spinner) peopleContainer.getChildAt(i);
+            people.add(person.getSelectedItem().toString());
+        }
+        String address = ((EditText) view.findViewById(R.id.location_address)).getText().toString();
         String description = ((EditText) view.findViewById(R.id.location_description)).getText().toString();
 
         LocationEntity location = new LocationEntity(name);
 
+        if (!address.isEmpty()) {
+            location.setAddress(address);
+        }
+        if (!people.isEmpty()) {
+            location.setPeople(people);
+        }
         if (!description.isEmpty()) {
             location.setDescription(description);
         }
@@ -60,10 +76,14 @@ public class LocationEntity extends BasicEntity {
         this.people = people;
     }
 
-    public String getHtml() {
+    @Override
+    public String toHtml() {
         StringBuilder sb = new StringBuilder();
         sb.append("Name: ").append(getName()).append("<br/>");
-        if(!getPeople().isEmpty()){
+        if(getAddress() != null){
+            sb.append("Address: ").append(getAddress()).append("<br/>");
+        }
+        if(getPeople() != null && !getPeople().isEmpty()){
             int idx = 0;
             for(String person : people){
                 if(idx == 0) sb.append("People: ").append(person);

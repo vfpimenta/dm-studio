@@ -81,7 +81,8 @@ public class CharacterEntity extends BasicEntity{
         this.gold = gold;
     }
 
-    public String getHtml() {
+    @Override
+    public String toHtml() {
         StringBuilder sb = new StringBuilder();
         sb.append("Name: ").append(getName()).append("<br/>");
         if(getRace() != null){

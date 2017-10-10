@@ -15,5 +15,5 @@
 	1. Use smoothing factor for calculating adjusted exp.
 	2. Use last selected value as default.
 	3. ~~Change challenge level color.~~
-	4. Update calculate button text and format.
-	5. Trim placeholder of spinners.
+	4. ~~Update calculate button text and format.~~
+	5. ~~Trim placeholder of spinners.~~
