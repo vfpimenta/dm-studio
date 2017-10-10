@@ -12,3 +12,13 @@
 
 ## v1.0.4
 * Fixed a bug where deletion of characters after switching pages would bahave strangely.
+
+## v1.1.0
+* The first version of the Campaign Notes tab has been released!
+
+* Added a icon for the app.
+* Updated app name to have a short version for the shortcut.
+* Changed the standard color theme from blue to red.
+* Added a color for the challenge level on the calculator.
+* Updated the calculate button to be more noticeable.
+* Other minor fixes.
