@@ -50,6 +50,9 @@ public class ItemEntity extends BasicEntity{
         if(!description.isEmpty()){
             item.setDescription(description);
         }
+        if (img != null) {
+            item.setImage(img);
+        }
 
         return item;
     }

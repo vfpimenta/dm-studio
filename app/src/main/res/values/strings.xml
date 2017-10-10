@@ -168,6 +168,8 @@
     <string name="label_item_type">Type: </string>
     <string name="label_item_rarity">Rarity: </string>
     <string name="label_item_attuned">Attunement: </string>
+    <string name="label_note_condition">Condition: </string>
+    <string name="label_note_action">Action: </string>
 
     <string name="hint_character_name">Character name</string>
     <string name="hint_character_gold">Gold carried</string>
@@ -178,7 +180,9 @@
     <string name="hint_item_name">Item name</string>
     <string name="hint_item_description">General info, magic properties, etc</string>
     <string name="hint_note_name">Riddle or note name</string>
-    <string name="hint_note_description">General info, meaning, etc</string>
+    <string name="hint_note_description">General info, meaning, author, etc</string>
+    <string name="hint_note_condition">When/how is it found</string>
+    <string name="hint_note_action">What happens after</string>
 
     <string name="attunement_requeired">Required</string>
     <string name="attunement_not_requeired">Not required</string>

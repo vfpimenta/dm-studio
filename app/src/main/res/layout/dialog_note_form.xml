@@ -27,6 +27,21 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:padding="10dip"
+                android:text="@string/label_note_condition" />
+            <EditText
+                android:id="@+id/note_condition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:maxWidth="200dip"
+                android:hint="@string/hint_note_condition" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dip"
                 android:text="@string/label_description" />
             <EditText
                 android:id="@+id/note_description"
@@ -35,6 +50,34 @@
                 android:padding="10dip"
                 android:maxWidth="200dip"
                 android:hint="@string/hint_note_description" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dip"
+                android:text="@string/label_note_action" />
+            <EditText
+                android:id="@+id/note_action"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:maxWidth="200dip"
+                android:hint="@string/hint_note_action" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dip"
+                android:text="@string/label_img" />
+            <Button
+                android:id="@+id/add_note_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/upload"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>

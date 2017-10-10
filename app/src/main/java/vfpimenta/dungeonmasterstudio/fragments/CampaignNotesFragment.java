@@ -356,16 +356,29 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 final LayoutInflater inflater = getActivity().getLayoutInflater();
                 final View view = inflater.inflate(R.layout.dialog_note_form, null);
+                view.findViewById(R.id.add_note_img).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View _view) {
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Choose Picture"), NOTE_CODE);
+                    }
+                });
                 builder.setTitle(R.string.note_form_title)
                         .setView(view)
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int wich){
-                                String name = ((EditText) view.findViewById(R.id.note_name)).getText().toString();
-                                String description = ((EditText) view.findViewById(R.id.note_description)).getText().toString();
-                                NoteEntity note = new NoteEntity(name, description, null, null);
-                                final LinearLayout noteContainer = getView().findViewById(R.id.note_container);
-                                buildNoteView(noteContainer, note);
-                                notes.add(note);
+                                try{
+                                    NoteEntity note = NoteEntity.init(view, getImg());
+
+                                    final LinearLayout noteContainer = getView().findViewById(R.id.note_container);
+                                    buildNoteView(noteContainer, note);
+                                    notes.add(note);
+                                } catch (MissingFieldException e) {
+                                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+
                             }
                         })
                         .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener(){
@@ -395,7 +408,7 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                     buttonId = R.id.add_item_img;
                     break;
                 case NOTE_CODE:
-                    //buttonId = R.id.add_note_img;
+                    buttonId = R.id.add_note_img;
                     break;
             }
 
