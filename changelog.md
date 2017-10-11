@@ -25,3 +25,6 @@
 
 ## v1.1.1
 * Fixed a bug where entities created with pictures woud not be saved.
+
+## v1.1.2
+* Fixed a bug where non-character entities were unable to be deleted.

@@ -168,6 +168,18 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
         }
     }
 
+    private <T extends BasicEntity> void removeFromList(T entity){
+        if(entity instanceof CharacterEntity){
+            characters.remove(entity);
+        } else if(entity instanceof LocationEntity){
+            locations.remove(entity);
+        } else if(entity instanceof ItemEntity){
+            items.remove(entity);
+        } else if(entity instanceof NoteEntity){
+            notes.remove(entity);
+        }
+    }
+
     private void buildCharacterView(final LinearLayout container, final BasicEntity entity){
         buildView(container, entity, R.string.character_info);
     }
@@ -206,7 +218,7 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                         .setMessage(R.string.confirm_deletion_message)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int wich){
-                                characters.remove(entity);
+                                removeFromList(entity);
                                 container.removeView((View) v.getParent());
                             }
                         })
