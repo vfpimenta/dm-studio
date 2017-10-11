@@ -332,6 +332,7 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 final LayoutInflater inflater = getActivity().getLayoutInflater();
                 final View view = inflater.inflate(R.layout.dialog_item_form, null);
+                setDialog(view);
                 view.findViewById(R.id.add_item_img).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View _view) {
@@ -368,6 +369,7 @@ public class CampaignNotesFragment extends Fragment implements View.OnClickListe
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 final LayoutInflater inflater = getActivity().getLayoutInflater();
                 final View view = inflater.inflate(R.layout.dialog_note_form, null);
+                setDialog(view);
                 view.findViewById(R.id.add_note_img).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View _view) {

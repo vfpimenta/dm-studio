@@ -28,3 +28,6 @@
 
 ## v1.1.2
 * Fixed a bug where non-character entities were unable to be deleted.
+
+## v1.1.3
+* Fixed a crash when trying to upload image for item or note.
